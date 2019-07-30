@@ -25,5 +25,6 @@ Buy a chicken for 50 coins, and bet a minimum of 50 coins with the bet slider. D
 - Change columns to resize properly when using full screen
 - Make the log display different messages for gaining or losing a crime
 - Make the log display different messages when you work
+- Add custom amount of chickens to buy
 
 **CREDITS: IDEA BASED OFF OF UNBELIEVABOAT DISCORD BOT - https://discordbots.org/bot/unbelievable CHECK IT OUT, IT'S AWESOME!**
