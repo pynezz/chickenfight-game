@@ -10,7 +10,7 @@ public class pickCoin : MonoBehaviour
     //public GameObject InformationPanel;
     public GameObject plusCashText;
     public GameObject logText;
-    public GameObject logPanel;
+    public AudioSource pickCoinSound;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class pickCoin : MonoBehaviour
         plusCashText.GetComponent<Text>().text = "+ 1";
         plusCashText.GetComponent<Animation>().Play("plusCashAnim");
         logText.GetComponent<Text>().text += ">You found a coin \n";
-
+        pickCoinSound.Play();
     }
 
 }

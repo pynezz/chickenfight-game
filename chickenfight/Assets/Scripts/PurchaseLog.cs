@@ -9,8 +9,10 @@ public class PurchaseLog : MonoBehaviour
     public GlobalCash GCash;
     public static double CashCount;
     public GameObject plusCashText;
+    public GameObject lossCashText;
     public GameObject logText;
     public GameObject upgrade10Btn;
+    public AudioSource upgradeSound;
 
 
     public void StartAutoMoney()
@@ -18,11 +20,14 @@ public class PurchaseLog : MonoBehaviour
         if(GlobalCash.CashCount >= 1000)
         {
             AutoMoney.SetActive(true);
-            logText.GetComponent<Text>().text += "UPGRADE! YOUR CHICKENS NOW PRODUCE 0.1 COIN EACH! " +
-                "(Rounded down of course this is no charity business \n";
+            logText.GetComponent<Text>().text += "UPGRADE! YOUR CHICKENS NOW PRODUCE 0.1 COIN EACH!";
             plusCashText.GetComponent<Text>().text = "UPGRADE!";
             plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             upgrade10Btn.SetActive(false);
+            GlobalCash.CashCount -= 1000;
+            lossCashText.GetComponent<Text>().text += "-1000";
+            lossCashText.GetComponent<Animation>().Play("lossCashAnim");
+            upgradeSound.Play();
         }
     }
 }
