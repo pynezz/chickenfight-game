@@ -15,6 +15,8 @@ public class ChickenFight : MonoBehaviour
     public GameObject lossCashText;
     public GameObject logText;
     public GameObject fakeFightChickenBtn2;
+    public AudioSource winSound;
+    public AudioSource loseSound;
     public Slider betSlider;
     private float betCheck;
 
@@ -50,6 +52,7 @@ public class ChickenFight : MonoBehaviour
             plusCashText.GetComponent<Text>().text = "+ " + betAmount;
             plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             logText.GetComponent<Text>().text += ">You won a chickenfight and won " + betAmount + "\n";
+            winSound.Play();
         }
 
         else
@@ -60,6 +63,7 @@ public class ChickenFight : MonoBehaviour
             lossCashText.GetComponent<Text>().text = "" + betAmount;
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
             logText.GetComponent<Text>().text += ">You lost a chickenfight and lost a chicken and " + betAmount + "\n";
+            loseSound.Play();
         }
     }
 

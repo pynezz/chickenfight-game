@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class proBar : MonoBehaviour
-
 {
     public GameObject logText;
     public GameObject lossCashText;
@@ -14,34 +13,21 @@ public class proBar : MonoBehaviour
     public AudioSource kaChing;
     public AudioSource coinStack;
 
-
-    public float LossRange;
-    public int genChance;
-    public int moneyCheck;
-    public float moneyLoss;
+    private float LossRange;
+    private int genChance;
+    private int moneyCheck;
+    private float moneyLoss;
     private int workMaxVal = 50;
     private int crimeMaxVal = 30;
     private int crimeWin;
     private int workWin;
     private int crimeWinBig;
-
-
     // public int pickMaxVal = 1;
-
     public Button workBtn;
     public Button crimeBtn;
-
-
     public Slider workSlider;
     public Slider crimeSlider;
     // public Slider pickCoinSlider;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -54,7 +40,6 @@ public class proBar : MonoBehaviour
         workWin = Random.Range(100, 400);
     }
     
-
     public void doCrime()
     {
         if(moneyCheck == 2 || moneyCheck == 3)
@@ -68,40 +53,32 @@ public class proBar : MonoBehaviour
         }
         else if(moneyCheck == 5)
         { 
-                GC.crime = 0;
-                GlobalCash.CashCount += crimeWinBig;
-                plusCashText.GetComponent<Text>().text = "+ " + crimeWinBig;
-                plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-                logText.GetComponent<Text>().text += ">WOW! You robbed a bank and got away with " + crimeWinBig + "!\n";
+            GC.crime = 0;
+            GlobalCash.CashCount += crimeWinBig;
+            plusCashText.GetComponent<Text>().text = "+ " + crimeWinBig;
+            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            logText.GetComponent<Text>().text += ">WOW! You robbed a bank and got away with " + crimeWinBig + "!\n";
+            coinStack.Play();
         }
         else
         {
             GC.crime = 0;
             moneyLoss = GlobalCash.CashCount * LossRange;
-            GlobalCash.CashCount -= moneyLoss;
-            lossCashText.GetComponent<Text>().text = "-" + moneyLoss;
+            GlobalCash.CashCount -= (int)moneyLoss;
+            lossCashText.GetComponent<Text>().text = "-" + (int)moneyLoss;
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
-            logText.GetComponent<Text>().text += ">You got busted stealing ladders and was fined " + moneyLoss + " \n";
+            logText.GetComponent<Text>().text += ">You got busted stealing ladders and was fined " + (int)moneyLoss + " \n";
         }
-
     }
-
 
     public void doWork()
     {
         GC.work = 0;
-        GlobalCash.CashCount += workWin;
+        GlobalCash.CashCount += workWin; 
         plusCashText.GetComponent<Text>().text = "+ " + workWin;
         plusCashText.GetComponent<Animation>().Play("plusCashAnim");
         logText.GetComponent<Text>().text += ">You did some honest work and earned " + workWin + " \n";
         kaChing.Play();
 
     }
-
-    /**public void pickCoin()
-    {
-        GC.coin = 0;
-        GlobalCash.CashCount += 1;
-    }*/
-
 }
