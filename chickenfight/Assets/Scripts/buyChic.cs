@@ -41,6 +41,22 @@ public class buyChic : MonoBehaviour
         {
             
         }
+    }
 
+    public void buyArmChick()
+    {
+        if(GlobalCash.CashCount >= 5000)
+        {
+            GlobalChickens.AChickenCount += 1;
+            GlobalCash.CashCount -= 5000;
+            plusCashText.GetComponent<Text>().text = "+ 1 Armored Chicken";
+            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            logText.GetComponent<Text>().text += "+1 Armored Chicken \n";
+        }
+
+        else if(GlobalCash.CashCount < 5000)
+        {
+
+        }
     }
 }

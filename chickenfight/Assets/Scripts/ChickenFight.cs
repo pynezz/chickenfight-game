@@ -14,25 +14,39 @@ public class ChickenFight : MonoBehaviour
     public GameObject plusCashText;
     public GameObject lossCashText;
     public GameObject logText;
-    public GameObject fakeFightChickenBtn2;
+    public GameObject fightChickenBtn;
+    public GameObject chooseAnAmountBtn;
     public AudioSource winSound;
     public AudioSource loseSound;
     public Slider betSlider;
     private float betCheck;
+    public Toggle ToggleArmChicken;
 
     public void Update()
     {
         betSlider.maxValue = GlobalCash.CashCount;
         betCheck = Random.Range(1, 1001);
-        print(betCheck);
+        //print(betCheck);
         if(betAmount > 50)
         {
-            fakeFightChickenBtn2.SetActive(false);
+            chooseAnAmountBtn.SetActive(false);
         }
-        else if(betAmount <= 50)
+
+        else if (betAmount <= 50)
         {
-            fakeFightChickenBtn2.SetActive(true);
+            chooseAnAmountBtn.SetActive(true);
         }
+
+        if (GlobalChickens.AChickenCount >= 1)
+        {
+            ToggleArmChicken.interactable = true;
+        }
+
+        else if (GlobalChickens.AChickenCount <= 0)
+        {
+            ToggleArmChicken.interactable = false;
+        }
+
     }
 
     public void AdjustBet (float newBet)
@@ -62,11 +76,44 @@ public class ChickenFight : MonoBehaviour
             GlobalChickens.ChickenCount -= 1;
             lossCashText.GetComponent<Text>().text = "" + betAmount;
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
-            logText.GetComponent<Text>().text += ">You lost a chickenfight and lost a chicken and " + betAmount + "\n";
+            logText.GetComponent<Text>().text += ">Your chicken died! You lost " + betAmount + "\n";
+            loseSound.Play();
+        }
+    } 
+
+    public void placeArmoredBet()
+    {
+        if(betCheck <= 50 || betCheck >= 460)
+        {
+            GlobalCash.CashCount += betAmount;
+            betText.GetComponent<Text>().text = "WIN!";
+            plusCashText.GetComponent<Text>().text = "+ " + betAmount;
+            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            logText.GetComponent<Text>().text += ">Your armored chicken won! You gained " + betAmount + "\n";
+            winSound.Play();
+        }
+
+        else
+        {
+            GlobalCash.CashCount -= betAmount;
+            betText.GetComponent<Text>().text = "Your armored chicken died.";
+            GlobalChickens.AChickenCount -= 1;
+            lossCashText.GetComponent<Text>().text = "" + betAmount;
+            lossCashText.GetComponent<Animation>().Play("lossCashAnim");
+            logText.GetComponent<Text>().text += ">Your armored chicken died. You lost " + betAmount + "\n";
             loseSound.Play();
         }
     }
 
+  /**  public void armoredChickenBet()
+    {
+        if(ToggleArmChicken == true)
+        {
+            fightChickenBtn.SetActive(false);
+            armChickenToggleScript.SetActive(true);
+        }
+    }
+    */
 
     /**    public void AllIn(string allIn)
         {

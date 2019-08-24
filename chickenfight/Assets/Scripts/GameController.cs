@@ -13,22 +13,17 @@ public class GameController : MonoBehaviour
 
     public float work = 0;
     public float crime = 0;
-    // public float coin = 0;
 
     public Slider workSlider;
     public Slider crimeSlider;
-    // public Slider pickCoinSlider;
 
     public GameObject workBtn;
     public GameObject crimeBtn;
     public GameObject fakeCrimeBtn;
     public GameObject fakeWorkBtn;
-    // public GameObject pickCoinBtn;
 
     public static bool turnOffCrimeButton = false;
     public static bool turnOffWorkButton = false;
-
-
 
 
     // Start is called before the first frame update
@@ -37,27 +32,13 @@ public class GameController : MonoBehaviour
         StartCoroutine(time());
         work = 50;
         crime = 30;
-        // coin = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // totalCashText.text = "AMOUNT OF CASH: Ð" + totalCash;
-        // totalChickensText.text = "CHICKENS: " + totalChickens;
         workSlider.value = work;
         crimeSlider.value = crime;
-
-        /**pickCoinSlider.value = coin;
-
-        if(coin >= 1)
-        {
-            pickCoinBtn.SetActive(true);
-        }
-        else if(coin < 1)
-        {
-            pickCoinBtn.SetActive(false);
-        }*/
 
         if(work >= 50)
         {

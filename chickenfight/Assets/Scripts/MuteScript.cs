@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class MuteScript : MonoBehaviour
 {
-
+    public GameObject muteBtnOn;
+    public GameObject muteBtnOff;
+    public GameObject welcomeMuteBtn;
     bool isMute; 
-    // Start is called before the first frame update
-    void Start()
+
+    public void Mute(bool isMuted)
     {
-        
+        muteBtnOn.SetActive(isMuted);
+        welcomeMuteBtn.SetActive(isMuted);
+        isMute = !isMute;
+        AudioListener.volume = isMute ? 0 : 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MuteWelcomeScreen(bool wIsMuted)
     {
-        
-    }
 
-
-    public void Mute()
-    {
         isMute = !isMute;
         AudioListener.volume = isMute ? 0 : 1;
     }

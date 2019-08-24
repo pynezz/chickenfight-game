@@ -22,19 +22,17 @@ public class proBar : MonoBehaviour
     private int crimeWin;
     private int workWin;
     private int crimeWinBig;
-    // public int pickMaxVal = 1;
     public Button workBtn;
     public Button crimeBtn;
     public Slider workSlider;
     public Slider crimeSlider;
-    // public Slider pickCoinSlider;
 
     void Update()
     {
 
         moneyCheck = Random.Range(1, 13);
         // print(moneyCheck);
-        LossRange = Random.Range(0.5f, 1.3f);
+        LossRange = Random.Range(0.4f, 0.8f);
         crimeWin = Random.Range(1000, 10000);
         crimeWinBig = Random.Range(10000, 50000);
         workWin = Random.Range(100, 400);
@@ -45,7 +43,7 @@ public class proBar : MonoBehaviour
         if(moneyCheck == 2 || moneyCheck == 3)
         {
             GC.crime = 0;
-            GlobalCash.CashCount += crimeWin;
+            GlobalCash.CashCount += crimeWin ;
             plusCashText.GetComponent<Text>().text = "+ " + crimeWin;
             plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             logText.GetComponent<Text>().text += ">You sold a brick as an iPhone on Craigslist and earned " + crimeWin + "\n";
@@ -54,7 +52,7 @@ public class proBar : MonoBehaviour
         else if(moneyCheck == 5)
         { 
             GC.crime = 0;
-            GlobalCash.CashCount += crimeWinBig;
+            GlobalCash.CashCount += crimeWinBig + (GlobalCash.CashCount / 2);
             plusCashText.GetComponent<Text>().text = "+ " + crimeWinBig;
             plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             logText.GetComponent<Text>().text += ">WOW! You robbed a bank and got away with " + crimeWinBig + "!\n";
@@ -74,7 +72,7 @@ public class proBar : MonoBehaviour
     public void doWork()
     {
         GC.work = 0;
-        GlobalCash.CashCount += workWin; 
+        GlobalCash.CashCount += workWin; //change for testing
         plusCashText.GetComponent<Text>().text = "+ " + workWin;
         plusCashText.GetComponent<Animation>().Play("plusCashAnim");
         logText.GetComponent<Text>().text += ">You did some honest work and earned " + workWin + " \n";
