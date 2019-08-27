@@ -10,6 +10,7 @@ public class AutoMoney2 : MonoBehaviour
     public GlobalCash GCash;
     public float CashCount;
     public GlobalChickens GChick;
+    public StatusAndStats StASt;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class AutoMoney2 : MonoBehaviour
             internalIncrease = moneyIncrease;
             moneyIncrease = GlobalChickens.ChickenCount * 0.15f;
             StartCoroutine(generateMoneyFromChickens());
+            StatusAndStats.moneyGained += (int)internalIncrease;
         }
     }
 

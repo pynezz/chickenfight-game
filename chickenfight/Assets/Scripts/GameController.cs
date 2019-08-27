@@ -78,6 +78,5 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-
 }
 

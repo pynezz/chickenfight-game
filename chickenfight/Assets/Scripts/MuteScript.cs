@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class MuteScript : MonoBehaviour
 {
-    public GameObject muteBtnOn;
     public GameObject muteBtnOff;
+    public GameObject musicMuteOff;
     public GameObject welcomeMuteBtn;
-    bool isMute; 
+    public GameObject Sounds;
+    public GameObject Music;
 
-    public void Mute(bool isMuted)
+    public void MuteAudio()
     {
-        muteBtnOn.SetActive(isMuted);
-        welcomeMuteBtn.SetActive(isMuted);
-        isMute = !isMute;
-        AudioListener.volume = isMute ? 0 : 1;
+        Sounds.SetActive(!Sounds.activeSelf);
+        muteBtnOff.SetActive(!muteBtnOff.activeSelf);
     }
 
-    public void MuteWelcomeScreen(bool wIsMuted)
+    public void MuteMusic()
     {
-
-        isMute = !isMute;
-        AudioListener.volume = isMute ? 0 : 1;
+        Music.SetActive(!Music.activeSelf);
+        musicMuteOff.SetActive(!musicMuteOff.activeSelf);
     }
 }

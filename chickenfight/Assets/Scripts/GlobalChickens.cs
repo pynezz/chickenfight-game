@@ -18,6 +18,8 @@ public class GlobalChickens : MonoBehaviour
     public Button chooseChickenBtn;
     public Button buyChicToFightBtn;
 
+    public Toggle AChickenToggle;
+
     public int InternalChickens;
 
     void Start()
@@ -41,7 +43,7 @@ public class GlobalChickens : MonoBehaviour
         else if (InternalChickens == 0)
             buyChicToFightBtn.gameObject.SetActive(true);
 
-        if(AChickenCount > 0) 
+        if((AChickenCount > 0 && !AChickenToggle.isOn) && ChickenCount < 1) 
         {
             chooseChickenBtn.gameObject.SetActive(true);
         }

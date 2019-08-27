@@ -7,30 +7,28 @@ public class pickCoin : MonoBehaviour
 {
 
     public GlobalCash GCash;
-    //public GameObject InformationPanel;
+    public StatusAndStats StASt;
     public GameObject plusCashText;
     public GameObject logText;
     public AudioSource pickCoinSound;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ActionLogManager ALM;
+    public static string myText;
+    public static Color myColor;
+    public static int coinPickRate = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void PickCoin()
     {
-        GlobalCash.CashCount += 1; 
-        plusCashText.GetComponent<Text>().text = "+ 1";
+        GlobalCash.CashCount += coinPickRate;
+        StatusAndStats.moneyGained += coinPickRate;
+        plusCashText.GetComponent<Text>().text = "+ " + coinPickRate;
         plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-        logText.GetComponent<Text>().text += ">You found a coin \n";
+        myText = ">You found some cash!";
+        myColor = new Color32(233, 233, 233, 255);
+        ALM.LogText(myText, myColor);
+        // logText.GetComponent<Text>().text += ">You found a coin \n";
         pickCoinSound.Play();
     }
-
 }
