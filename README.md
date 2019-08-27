@@ -39,6 +39,7 @@ Buy a chicken for 50 coins, and bet a minimum of 50 coins with the bet slider. D
  - Marketplace added
  
 **CREDITS:**
+
 IDEA BASED OFF OF UNBELIEVABOAT DISCORD BOT - https://discordbots.org/bot/unbelievable CHECK IT OUT, IT'S AWESOME!
 
 Sound effects obtained from https://www.zapsplat.com
