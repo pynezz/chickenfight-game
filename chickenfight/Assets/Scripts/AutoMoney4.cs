@@ -5,8 +5,8 @@ using UnityEngine;
 public class AutoMoney4 : MonoBehaviour
 {
     public bool genMoney = false;
-    public static float moneyIncrease;
-    public static float internalIncrease;
+    public static int moneyIncrease;
+    public static int internalIncrease;
     public GlobalCash GCash;
     public float CashCount;
     public GlobalChickens GChick;
@@ -27,7 +27,7 @@ public class AutoMoney4 : MonoBehaviour
         {
             genMoney = true;
             internalIncrease = moneyIncrease;
-            moneyIncrease = GlobalChickens.ChickenCount * 0.25f;
+            moneyIncrease = Mathf.RoundToInt(GlobalChickens.ChickenCount * 0.25f);
             StartCoroutine(generateMoneyFromChickens());
             StatusAndStats.moneyGained += (int)internalIncrease;
         }

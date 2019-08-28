@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class TextLogItem : MonoBehaviour
 {
-    public string myText1;
-    public string myText2;
-    public string myText3;
-    public string myText4;
-
-    public void SetText(string myText, Color myColor)
+    public void CashAnim(string animText, Color animColor, int fontSize) //animText = teksten som skal animeres. AnimColor er fargen på teksten.
     {
-        myText1 = myText;
-        myText2 = myText;
-        myText3 = myText;
-        myText4 = myText;
+        GetComponent<Text>().text = animText;
+        GetComponent<Text>().color = animColor;
+        GetComponent<Text>().fontSize = fontSize;
+    }
+    public void SetText(string myText, Color myColor) //myText er teksten som skal skrives i konsollen. myColor er fargen på teksten i konsollen.
+    {
         GetComponent<Text>().text = myText;
         GetComponent<Text>().color = myColor;
     }
+
+
 
 }

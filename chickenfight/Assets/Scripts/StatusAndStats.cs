@@ -10,7 +10,7 @@ public class StatusAndStats : MonoBehaviour
     public static int chickensBought;
     public static int chickensLost;
     public static int moneyLost;
-    public static int moneyGained;
+    public static float moneyGained;
     public static int marketPlaceUnlock;
 
     public string currentStatus;
@@ -18,6 +18,7 @@ public class StatusAndStats : MonoBehaviour
     public GameObject MPUnlockBtn1text, MPUnlockBtn2text, MPUnlockBtn3text, MPUnlockBtn4text, MPUnlockBtn5text;
     public GameObject MPUnlockBtn1Disabled, MPUnlockBtn2Disabled, MPUnlockBtn3Disabled, MPUnlockBtn4Disabled, MPUnlockBtn5Disabled;
     public GameObject statsWindow;
+    public GameObject levelText;
 
     public PurchaseLog PurchLog;
 
@@ -45,6 +46,7 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "Chickapee";
             StatusBackground.GetComponent<Image>().color = new Color32(152, 55, 100, 255);
+            levelText.GetComponent<Text>().text = ("Level 2");
             marketPlaceUnlock = 1;
         }
 
@@ -52,6 +54,7 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "Chocobo";
             StatusBackground.GetComponent<Image>().color = new Color32(137, 55, 152, 255);
+            levelText.GetComponent<Text>().text = ("Level 3");
             marketPlaceUnlock = 2;
         }
 
@@ -59,6 +62,7 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "Ostrich";
             StatusBackground.GetComponent<Image>().color = new Color32(55, 78, 152, 255);
+            levelText.GetComponent<Text>().text = ("Level 4");
             marketPlaceUnlock = 3;
         }
 
@@ -66,6 +70,7 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "Road Runner";
             StatusBackground.GetComponent<Image>().color = new Color32(55, 132, 152, 255);
+            levelText.GetComponent<Text>().text = ("Level 5");
             marketPlaceUnlock = 4;
         }
 
@@ -73,6 +78,8 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "War Emu";
             StatusBackground.GetComponent<Image>().color = new Color32(55, 152, 71, 255);
+            levelText.GetComponent<Text>().text = ("Level 6");
+
             marketPlaceUnlock = 5;
         }
 
@@ -80,27 +87,22 @@ public class StatusAndStats : MonoBehaviour
         {
             case 1:
                 MPUnlockBtn1Disabled.SetActive(false);
-                MPUnlockBtn1.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
                 break;
             case 2:
                 MPUnlockBtn2Disabled.SetActive(false);
-                MPUnlockBtn2.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
-                MPUnlockBtn2text.GetComponent<Text>().text = "1";
+                MPUnlockBtn2text.GetComponent<Text>().text = "Coming soon";
                 break;
             case 3:
                 MPUnlockBtn3Disabled.SetActive(false);
-                MPUnlockBtn3.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
-                MPUnlockBtn3text.GetComponent<Text>().text = "1";
+                MPUnlockBtn3text.GetComponent<Text>().text = "Coming soon";
                 break;
             case 4:
                 MPUnlockBtn4Disabled.SetActive(false);
-                MPUnlockBtn4.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
-                MPUnlockBtn4text.GetComponent<Text>().text = "1";
+                MPUnlockBtn4text.GetComponent<Text>().text = "Coming soon";
                 break;
             case 5:
                 MPUnlockBtn5Disabled.SetActive(false);
-                MPUnlockBtn5.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
-                MPUnlockBtn5text.GetComponent<Text>().text = "1";
+                MPUnlockBtn5text.GetComponent<Text>().text = "Coming soon";
                 break;
             default:
                 break;

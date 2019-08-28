@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MuteScript : MonoBehaviour
 {
-    public GameObject muteBtnOff;
-    public GameObject musicMuteOff;
-    public GameObject welcomeMuteBtn;
+    public GameObject muteBtnOff, musicMuteOff;
+    public GameObject muteBtnOffWS, musicMuteOffWS;
     public GameObject Sounds;
     public GameObject Music;
 
@@ -20,5 +19,17 @@ public class MuteScript : MonoBehaviour
     {
         Music.SetActive(!Music.activeSelf);
         musicMuteOff.SetActive(!musicMuteOff.activeSelf);
+    }
+
+    public void MuteAudioWS()
+    {
+        Sounds.SetActive(!Sounds.activeSelf);
+        muteBtnOffWS.SetActive(!muteBtnOffWS.activeSelf);
+    }
+
+    public void MuteMusicWS()
+    {
+        Music.SetActive(!Music.activeSelf);
+        musicMuteOffWS.SetActive(!musicMuteOffWS.activeSelf);
     }
 }

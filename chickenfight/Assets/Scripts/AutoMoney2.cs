@@ -5,13 +5,12 @@ using UnityEngine;
 public class AutoMoney2 : MonoBehaviour
 {
     public bool genMoney = false;
-    public static float moneyIncrease;
-    public static float internalIncrease;
+    public static int moneyIncrease;
+    public static int internalIncrease;
     public GlobalCash GCash;
     public float CashCount;
     public GlobalChickens GChick;
     public StatusAndStats StASt;
-
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +26,9 @@ public class AutoMoney2 : MonoBehaviour
         {
             genMoney = true;
             internalIncrease = moneyIncrease;
-            moneyIncrease = GlobalChickens.ChickenCount * 0.15f;
+            moneyIncrease = Mathf.RoundToInt(GlobalChickens.ChickenCount * 0.15f);
             StartCoroutine(generateMoneyFromChickens());
-            StatusAndStats.moneyGained += (int)internalIncrease;
+            StatusAndStats.moneyGained += internalIncrease;
         }
     }
 

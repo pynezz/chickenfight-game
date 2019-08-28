@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     public GameObject fakeCrimeBtn;
     public GameObject fakeWorkBtn;
 
+    public GameObject workBar, crimeBar;
+
     public static bool turnOffCrimeButton = false;
     public static bool turnOffWorkButton = false;
 
@@ -44,22 +46,26 @@ public class GameController : MonoBehaviour
         {
             fakeWorkBtn.SetActive(false);
             workBtn.SetActive(true);
+            workBar.GetComponent<Image>().color = new Color32(59, 192, 63, 255);
         }
         else if(work < 50)
         {
             fakeWorkBtn.SetActive(true);
             workBtn.SetActive(false);
+            workBar.GetComponent<Image>().color = new Color32(209, 112, 100, 255);
         }
 
         if (crime >= 30)
         {
             fakeCrimeBtn.SetActive(false);
             crimeBtn.SetActive(true);
+            crimeBar.GetComponent<Image>().color = new Color32(59, 192, 63, 255);
         }
         else if(crime < 30)
         {
             fakeCrimeBtn.SetActive(true);
             crimeBtn.SetActive(false);
+            crimeBar.GetComponent<Image>().color = new Color32(209, 112, 100, 255);
         }
     }
 

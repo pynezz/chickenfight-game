@@ -14,7 +14,7 @@ public class GlobalCash : MonoBehaviour
     void Update()
     {
         InternalCash = CashCount;
-        totalCash.GetComponent<Text>().text = "AMOUNT OF CASH: " + (int)InternalCash;
+        totalCash.GetComponent<Text>().text = "AMOUNT OF CASH: " + InternalCash;
     }
 
 

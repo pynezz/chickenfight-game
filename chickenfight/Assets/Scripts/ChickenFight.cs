@@ -14,19 +14,36 @@ public class ChickenFight : MonoBehaviour
     public GameObject betText;
     public GameObject plusCashText, lossCashText, buttonBribePriceText;
     public GameObject logText;
-    public GameObject fightChickenBtn, bribeBtn, bribeBtnDisabled, chooseAnAmountBtn;
+    public GameObject fightChickenBtn, fightArmChickenBtn, bribeBtn, bribeBtnDisabled, chooseAnAmountBtn;
     public AudioSource winSound, loseSound;
     public Slider betSlider;
     private float betCheck;
     public float betAmount = 0;
     public Toggle ToggleArmChicken;
-    public static string myText;
-    public static Color myColor;
+
+    public static string myText; //denne delen er for konsollen
+    public static Color myColor; // ^
+
     public static bool bribe = false;
     public static int bribePrice = 50000;
 
+    public static int fontSize;
+    public static string animText; //denne delen er for å stacke animasjonene
+    public static Color animColor; // -''-
+    public static Animation plusLossAnim; // -''-
+
     public void Update()
     {
+        if((Input.GetKeyDown(KeyCode.Space) && fightArmChickenBtn.activeSelf) && (betAmount > 50 && ToggleArmChicken.isOn))
+        {
+            placeArmoredBet();
+        }
+        else if((Input.GetKeyDown(KeyCode.Space) && fightChickenBtn.activeSelf) && betAmount > 50)
+        {
+            PlaceBet();
+        }
+        
+
         betSlider.maxValue = GlobalCash.CashCount;
         betCheck = Random.Range(1, 1001);
         //print(betCheck);
@@ -51,7 +68,7 @@ public class ChickenFight : MonoBehaviour
         }
     }
 
-    public void AdjustBet (float newBet)
+    public void AdjustBet(float newBet)
     {
         betAmount = newBet;
         betText.GetComponent<Text>().text = "" + betAmount;
@@ -72,7 +89,6 @@ public class ChickenFight : MonoBehaviour
         }
     }
 
-
     public void PlaceBet()
     {
 
@@ -81,11 +97,18 @@ public class ChickenFight : MonoBehaviour
             GlobalCash.CashCount += betAmount;
             StatusAndStats.moneyGained += (int)betAmount;
             betText.GetComponent<Text>().text = "WIN!";
-            plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+           // plusCashText.GetComponent<Text>().text = "+ " + betAmount;
+           // plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+
             myText = ">You won a chickenfight and won " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
+
+            animText = "+" + betAmount;
+            animColor = new Color32(59, 192, 63, 255);
+            fontSize = 47;
+            ALM.cashAnimation(animText, animColor, fontSize);
+
             winSound.Play();
             bribePrice = bribePrice * 4;
             bribe = false;
@@ -101,11 +124,18 @@ public class ChickenFight : MonoBehaviour
             StatusAndStats.moneyGained += (int)betAmount;
             StatusAndStats.fightsWon += 1;
             betText.GetComponent<Text>().text = "WIN!";
-            plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
+            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+
+            animText = "+" + betAmount;
+            animColor = new Color32(59, 192, 63, 255);
+            fontSize = 47;
+            ALM.cashAnimation(animText, animColor, fontSize);
+
             myText = ">You won a chickenfight and won " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
+
             winSound.Play();
             betSlider.value = 0.1f;
 
@@ -125,7 +155,6 @@ public class ChickenFight : MonoBehaviour
             ALM.LogText(myText, myColor);
             //loseSound.Play();
             betSlider.value = 0.1f;
-
         }
     } 
 
@@ -136,11 +165,18 @@ public class ChickenFight : MonoBehaviour
             GlobalCash.CashCount += betAmount;
             StatusAndStats.moneyGained += (int)betAmount;
             betText.GetComponent<Text>().text = "WIN!";
-            plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
+            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+
+            animText = "+" + betAmount;
+            animColor = new Color32(59, 192, 63, 255);
+            fontSize = 47;
+            ALM.cashAnimation(animText, animColor, fontSize);
+
             myText = ">You won a chickenfight and won " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
+
             winSound.Play();
             bribePrice = bribePrice * 4;
             bribe = false;
@@ -156,11 +192,18 @@ public class ChickenFight : MonoBehaviour
             StatusAndStats.moneyGained += (int)betAmount;
             StatusAndStats.fightsWon += 1;
             betText.GetComponent<Text>().text = "WIN!";
-            plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
+            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
+
+            animText = "+" + betAmount;
+            animColor = new Color32(59, 192, 63, 255);
+            fontSize = 47;
+            ALM.cashAnimation(animText, animColor, fontSize);
+
             myText = ">Your chicken won! You gained " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
+
             winSound.Play();
             betSlider.value = 0.1f;
 
@@ -168,7 +211,7 @@ public class ChickenFight : MonoBehaviour
 
         else
         {
-            GlobalCash.CashCount -= betAmount;
+            GlobalCash.CashCount -= (betAmount);
             GlobalChickens.AChickenCount -= 1;
             StatusAndStats.moneyLost += (int)betAmount;
             StatusAndStats.chickensLost += 1; 

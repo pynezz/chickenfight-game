@@ -17,18 +17,25 @@ public class pickCoin : MonoBehaviour
     public static Color myColor;
     public static int coinPickRate = 1;
 
+    public static string animText;
+    public static Color animColor;
+    public static Animation plusLossAnim;
+    public GameObject plusLossText;
+    public static int fontSize;
 
 
     public void PickCoin()
     {
         GlobalCash.CashCount += coinPickRate;
         StatusAndStats.moneyGained += coinPickRate;
-        plusCashText.GetComponent<Text>().text = "+ " + coinPickRate;
-        plusCashText.GetComponent<Animation>().Play("plusCashAnim");
         myText = ">You found some cash!";
         myColor = new Color32(233, 233, 233, 255);
         ALM.LogText(myText, myColor);
-        // logText.GetComponent<Text>().text += ">You found a coin \n";
         pickCoinSound.Play();
+
+        animText = "+" + coinPickRate;
+        animColor = new Color32(59, 192, 63, 255);
+        fontSize = 47;
+        ALM.cashAnimation(animText, animColor, fontSize);
     }
 }
