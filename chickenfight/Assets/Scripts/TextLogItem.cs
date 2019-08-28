@@ -17,7 +17,4 @@ public class TextLogItem : MonoBehaviour
         GetComponent<Text>().text = myText;
         GetComponent<Text>().color = myColor;
     }
-
-
-
 }

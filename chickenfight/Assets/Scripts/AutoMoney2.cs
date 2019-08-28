@@ -12,16 +12,8 @@ public class AutoMoney2 : MonoBehaviour
     public GlobalChickens GChick;
     public StatusAndStats StASt;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
         if (genMoney == false)
         {
             genMoney = true;
@@ -31,12 +23,10 @@ public class AutoMoney2 : MonoBehaviour
             StatusAndStats.moneyGained += internalIncrease;
         }
     }
-
     IEnumerator generateMoneyFromChickens()
     {
         GlobalCash.CashCount += internalIncrease;
         yield return new WaitForSeconds(1);
         genMoney = false;
-
     }
 }

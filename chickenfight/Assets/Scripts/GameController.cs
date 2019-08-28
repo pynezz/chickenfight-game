@@ -8,9 +8,7 @@ public class GameController : MonoBehaviour
     public Text totalCashText;
     public Text totalChickensText;
 
-    //public float totalCash = 0;
     public float totalChickens = 0;
-
     public float work = 0;
     public float crime = 0;
 
@@ -21,14 +19,11 @@ public class GameController : MonoBehaviour
     public GameObject crimeBtn;
     public GameObject fakeCrimeBtn;
     public GameObject fakeWorkBtn;
-
     public GameObject workBar, crimeBar;
 
     public static bool turnOffCrimeButton = false;
     public static bool turnOffWorkButton = false;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(time());
@@ -36,33 +31,28 @@ public class GameController : MonoBehaviour
         crime = 30;
     }
 
-    // Update is called once per frame
     void Update()
     {
         workSlider.value = work;
         crimeSlider.value = crime;
 
-        if(work >= 50)
-        {
+        if(work >= 50){
             fakeWorkBtn.SetActive(false);
             workBtn.SetActive(true);
             workBar.GetComponent<Image>().color = new Color32(59, 192, 63, 255);
         }
-        else if(work < 50)
-        {
+        else if(work < 50){
             fakeWorkBtn.SetActive(true);
             workBtn.SetActive(false);
             workBar.GetComponent<Image>().color = new Color32(209, 112, 100, 255);
         }
 
-        if (crime >= 30)
-        {
+        if (crime >= 30){
             fakeCrimeBtn.SetActive(false);
             crimeBtn.SetActive(true);
             crimeBar.GetComponent<Image>().color = new Color32(59, 192, 63, 255);
         }
-        else if(crime < 30)
-        {
+        else if(crime < 30){
             fakeCrimeBtn.SetActive(true);
             crimeBtn.SetActive(false);
             crimeBar.GetComponent<Image>().color = new Color32(209, 112, 100, 255);

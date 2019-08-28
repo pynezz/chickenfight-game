@@ -10,8 +10,6 @@ public class buyChic : MonoBehaviour
     public GameObject plusCashText;
     public GameObject lossCashText;
     public AudioSource chicBak;
-    //public GameObject logText;
-    //public GameObject logPanel;
     public GameObject buyChickenBtn;
     public StatusAndStats StASt;
     public GameObject ArmChickBtn, ArmChicBtnText;
@@ -30,17 +28,12 @@ public class buyChic : MonoBehaviour
     public static int fontSize;
 
     public static int buyChicAmount = 1, buyChicAmountUpdate, buyChicMathConversion;
-
     public static int chickenAmountToBuy;
-
     public int cashRemainder, chickensToAfford;
-
     public static int ChickenPrice;
 
     public bool chickenUpdate = false;
 
-
-    // Update is called once per frame
     void Update()
     {
         ChickenPrice = chickenAmountToBuy * 50;
@@ -82,7 +75,6 @@ public class buyChic : MonoBehaviour
             AChickenPriceIncrease = false;
         }
     }
-
     public void buyChick()
     {
         if(GlobalCash.CashCount >= ChickenPrice)
@@ -91,8 +83,6 @@ public class buyChic : MonoBehaviour
             GlobalChickens.ChickenCount += chickenAmountToBuy;
             StatusAndStats.chickensBought += chickenAmountToBuy;
             GlobalCash.CashCount -= ChickenPrice;
-            //plusCashText.GetComponent<Text>().text = "+ 1 Chicken";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             animText = "+" + chickenAmountToBuy + " Chicken(s)";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 32;
@@ -119,7 +109,6 @@ public class buyChic : MonoBehaviour
             myColor = new Color32(233, 233, 233, 255);
             ALM.LogText(myText, myColor);
         }
-
         else
         {
 
@@ -133,10 +122,6 @@ public class buyChic : MonoBehaviour
             GlobalChickens.AChickenCount += 1;
             StatusAndStats.chickensBought += 1;
             GlobalCash.CashCount -= ArmChicPrice;
-
-           // plusCashText.GetComponent<Text>().text = "+ 1 Armored Chicken";
-           // plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+1 Armored Chicken!";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 32;
@@ -149,7 +134,6 @@ public class buyChic : MonoBehaviour
             AChickenPriceIncrease = true;
             ArmChicPrice += 100;
         }
-
         else if(GlobalCash.CashCount < 5000)
         {
 
@@ -196,13 +180,10 @@ public class buyChic : MonoBehaviour
             default:
                 break;
         }
-
-
     }
 
     IEnumerator ChickenPriceUpdater()
-    {
-        
+    {        
         yield return new WaitForEndOfFrame();
         chickenUpdate = false;
     }

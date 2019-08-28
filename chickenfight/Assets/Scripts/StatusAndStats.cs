@@ -21,7 +21,6 @@ public class StatusAndStats : MonoBehaviour
     public GameObject levelText;
 
     public PurchaseLog PurchLog;
-
     public void openStats()
     {
         statsWindow.SetActive(!statsWindow.activeSelf);
@@ -79,10 +78,8 @@ public class StatusAndStats : MonoBehaviour
             currentStatus = "War Emu";
             StatusBackground.GetComponent<Image>().color = new Color32(55, 152, 71, 255);
             levelText.GetComponent<Text>().text = ("Level 6");
-
             marketPlaceUnlock = 5;
         }
-
         switch(marketPlaceUnlock)
         {
             case 1:
@@ -108,10 +105,4 @@ public class StatusAndStats : MonoBehaviour
                 break;
         }
     }
-
-    void Start()
-    {
-
-    }
-
 }

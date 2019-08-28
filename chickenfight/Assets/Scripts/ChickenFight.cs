@@ -41,8 +41,7 @@ public class ChickenFight : MonoBehaviour
         else if((Input.GetKeyDown(KeyCode.Space) && fightChickenBtn.activeSelf) && betAmount > 50)
         {
             PlaceBet();
-        }
-        
+        }        
 
         betSlider.maxValue = GlobalCash.CashCount;
         betCheck = Random.Range(1, 1001);
@@ -67,7 +66,6 @@ public class ChickenFight : MonoBehaviour
             ToggleArmChicken.interactable = false;
         }
     }
-
     public void AdjustBet(float newBet)
     {
         betAmount = newBet;
@@ -88,7 +86,6 @@ public class ChickenFight : MonoBehaviour
             bribeBtn.SetActive(false);
         }
     }
-
     public void PlaceBet()
     {
 
@@ -97,9 +94,6 @@ public class ChickenFight : MonoBehaviour
             GlobalCash.CashCount += betAmount;
             StatusAndStats.moneyGained += (int)betAmount;
             betText.GetComponent<Text>().text = "WIN!";
-           // plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-           // plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             myText = ">You won a chickenfight and won " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
@@ -124,9 +118,6 @@ public class ChickenFight : MonoBehaviour
             StatusAndStats.moneyGained += (int)betAmount;
             StatusAndStats.fightsWon += 1;
             betText.GetComponent<Text>().text = "WIN!";
-            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+" + betAmount;
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -135,12 +126,9 @@ public class ChickenFight : MonoBehaviour
             myText = ">You won a chickenfight and won " + betAmount;
             myColor = new Color32(59, 192, 63, 255);
             ALM.LogText(myText, myColor);
-
             winSound.Play();
             betSlider.value = 0.1f;
-
         }
-
         else
         {
             GlobalCash.CashCount -= betAmount;
@@ -165,9 +153,6 @@ public class ChickenFight : MonoBehaviour
             GlobalCash.CashCount += betAmount;
             StatusAndStats.moneyGained += (int)betAmount;
             betText.GetComponent<Text>().text = "WIN!";
-            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+" + betAmount;
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -192,9 +177,6 @@ public class ChickenFight : MonoBehaviour
             StatusAndStats.moneyGained += (int)betAmount;
             StatusAndStats.fightsWon += 1;
             betText.GetComponent<Text>().text = "WIN!";
-            //plusCashText.GetComponent<Text>().text = "+ " + betAmount;
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+" + betAmount;
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -206,7 +188,6 @@ public class ChickenFight : MonoBehaviour
 
             winSound.Play();
             betSlider.value = 0.1f;
-
         }
 
         else
@@ -223,43 +204,5 @@ public class ChickenFight : MonoBehaviour
             ALM.LogText(myText, myColor);
             loseSound.Play();
             betSlider.value = 0.1f;
-
         }
     }
-
-  /**  public void armoredChickenBet()
-    {
-        if(ToggleArmChicken == true)
-        {
-            fightChickenBtn.SetActive(false);
-            armChickenToggleScript.SetActive(true);
-        }
-    }
-    */
-
-    /**    public void AllIn(string allIn)
-        {
-            
-        }
-
-        public void halfIn(string halfIn)
-        {
-
-        }
-
-        public void fightChicken(string FightChicken)
-        {
-            FightChicken = GetComponent<InputField>().text + betAmount;
-            betAmount = double.Parse(FightChicken);
-
-            if (betAmount >= GlobalCash.CashCount)
-            {
-                betAmount -= GlobalCash.CashCount;
-            }
-            
-        }*/
-
-
-
-
-}

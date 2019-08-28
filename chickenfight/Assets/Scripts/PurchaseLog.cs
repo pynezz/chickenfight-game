@@ -62,7 +62,6 @@ public class PurchaseLog : MonoBehaviour
         {
             bribeBtn.GetComponent<Image>().color = new Color32(176, 64, 59, 255);
         }
-
         if(GlobalCash.CashCount >= pickCoinUpgradePrice)
         {
             pickCoinUpgradeBtn.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
@@ -71,7 +70,6 @@ public class PurchaseLog : MonoBehaviour
         {
             pickCoinUpgradeBtn.GetComponent<Image>().color = new Color32(176, 64, 59, 255); 
         }
-
         if (GlobalCash.CashCount >= betterJob)
         {
             MPUnlockBtn1.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
@@ -80,7 +78,6 @@ public class PurchaseLog : MonoBehaviour
         {
             MPUnlockBtn1.GetComponent<Image>().color = new Color32(176, 64, 59, 255);
         }
-
         if (jobBonus)
         {
             MPUnlockBtn1text.GetComponent<Text>().text = "BETTER JOB\n" + "(-" + betterJob + ")";
@@ -91,10 +88,7 @@ public class PurchaseLog : MonoBehaviour
             pickCoinUpgradeBtnText.GetComponent<Text>().text = "PICK COINS BETTER\n" + "(-" + pickCoinUpgradePrice + ")";
             pickCoinBtnAmText.GetComponent<Text>().text = "(+" + pickCoin.coinPickRate + ")";
             pickCoinUpgrade = false;
-
         }
-
-
     }
 
     public void StartAutoMoney()
@@ -104,9 +98,6 @@ public class PurchaseLog : MonoBehaviour
             GlobalCash.CashCount -= 1000;
             AutoMoney.SetActive(true);
             upgrade10Btn.SetActive(false);
-
-            //plusCashText.GetComponent<Text>().text = "UPGRADE!";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             lossCashText.GetComponent<Text>().text = "-1000";
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
 
@@ -118,7 +109,6 @@ public class PurchaseLog : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">UPGRADE! YOUR CHICKENS NOW PRODUCE 0.1 COIN EACH!";
             ALM.LogText(myText, myColor);
-
             upgradeSound.Play();
         }
     }
@@ -131,10 +121,6 @@ public class PurchaseLog : MonoBehaviour
             AutoMoney.SetActive(false);
             AutoMoney2.SetActive(true);
             upgrade15Btn.SetActive(false);
-
-            //plusCashText.GetComponent<Text>().text = "UPGRADE!";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "UPGRADE!";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -146,7 +132,6 @@ public class PurchaseLog : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">UPGRADE! YOUR CHICKENS NOW PRODUCE 0.15 COINS EACH!";
             ALM.LogText(myText, myColor);
-
             upgradeSound.Play();
         }
     }
@@ -164,16 +149,12 @@ public class PurchaseLog : MonoBehaviour
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
             ALM.cashAnimation(animText, animColor, fontSize);
-
-            //plusCashText.GetComponent<Text>().text = "UPGRADE!";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
             lossCashText.GetComponent<Text>().text = "-25 000";
             lossCashText.GetComponent<Animation>().Play("lossCashAnim"); 
 
             myColor = new Color32(59, 192, 63, 255);
             myText = ">UPGRADE! YOUR CHICKENS NOW PRODUCE 0.2 COINS EACH!";
             ALM.LogText(myText, myColor);
-
             upgradeSound.Play();
         }
     }
@@ -186,10 +167,6 @@ public class PurchaseLog : MonoBehaviour
             AutoMoney3.SetActive(false);
             AutoMoney4.SetActive(true);
             upgrade25Btn.SetActive(false);
-
-           // plusCashText.GetComponent<Text>().text = "UPGRADE!";
-           // plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "UPGRADE!";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -201,7 +178,6 @@ public class PurchaseLog : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">UPGRADE! YOUR CHICKENS NOW PRODUCE 0.25 COINS EACH!";
             ALM.LogText(myText, myColor);
-
             upgradeSound.Play();
         }
     }
@@ -218,10 +194,6 @@ public class PurchaseLog : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">PROMOTION!";
             ALM.LogText(myText, myColor);
-
-            //plusCashText.GetComponent<Text>().text = "PROMOTION!";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "PROMOTION!";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -248,10 +220,6 @@ public class PurchaseLog : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">UPGRADE! You now pick " + pickCoin.coinPickRate + " at a time.";
             ALM.LogText(myText, myColor);
-
-            //plusCashText.GetComponent<Text>().text = "UPGRADE!";
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "UPGRADE!";
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -259,7 +227,6 @@ public class PurchaseLog : MonoBehaviour
 
             lossCashText.GetComponent<Text>().text = "-" + pickCoinUpgradePrice;
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
-
             upgradeSound.Play();
         }           
     }

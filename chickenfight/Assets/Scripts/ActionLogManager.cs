@@ -4,20 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionLogManager : MonoBehaviour
-{
-    
+{    
     public GameObject actionText; //her kobles konsolltekstobjektet på i Unity
     public GameObject animText; //her kobles tekstobjektet som vil bli animert på i Unity
 
     private List<GameObject> textAnims; //her defineres listen som skal brukes senere i scriptet
     private List<GameObject> textItems; // ^
-
     void Start()
     {
         textItems = new List<GameObject>(); //en liste av GameObjects for konsolltekster
         textAnims = new List<GameObject>(); //en liste av GameObjects for animasjoner
     }
-
     public void cashAnimation(string lossWinCashString, Color cashAnimColor, int fontSize)//, Animation lossPlusAnimation)
     {
         if(textAnims.Count == 10) //mengden objekter som skal genereres, når det er 10 objekter vil if statementen kjøre
@@ -33,12 +30,6 @@ public class ActionLogManager : MonoBehaviour
         newAnim.transform.SetParent(animText.transform.parent, false); //her settes objektet som barn av tekstobjektet animText sin forelder
         textAnims.Add(newAnim.gameObject); //her genereres legges objektet til i listen textAnims
     }
-
-
-
-
-
-
     public void LogText(string newTextString, Color newColor)
     {
         if(textItems.Count == 10)
@@ -47,7 +38,6 @@ public class ActionLogManager : MonoBehaviour
             Destroy(tempItem.gameObject);
             textItems.Remove(tempItem);
         }
-
         GameObject newText = Instantiate(actionText) as GameObject;
         newText.SetActive(true);
         newText.GetComponent<TextLogItem>().SetText(newTextString, newColor);

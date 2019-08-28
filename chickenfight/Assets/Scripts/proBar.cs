@@ -15,13 +15,10 @@ public class proBar : MonoBehaviour
     public AudioSource coinStack;
     public StatusAndStats StASt;
     public PurchaseLog PuLo;
-
     private float LossRange;
     private int genChance;
     private int moneyCheck;
     private float moneyLoss;
-    //    private int workMaxVal = 50;
-    //    private int crimeMaxVal = 30;
     public int crimeWin, workWin, crimeWinBig, workBonus = 0, randomWorkBonus = 0;
     public Button workBtn;
     public Button crimeBtn;
@@ -42,7 +39,6 @@ public class proBar : MonoBehaviour
         {
             randomWorkBonus = Random.Range(2, 4);
         }
-
         moneyCheck = Random.Range(1, 13);
         // print(moneyCheck);
         LossRange = Random.Range(0.4f, 0.8f);
@@ -58,9 +54,6 @@ public class proBar : MonoBehaviour
             GC.crime = 0;
             GlobalCash.CashCount += crimeWin;
             StatusAndStats.moneyGained += crimeWin;
-            //plusCashText.GetComponent<Text>().text = "+ " + crimeWin;
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+" + crimeWin;
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -69,18 +62,14 @@ public class proBar : MonoBehaviour
             myColor = new Color32(59, 192, 63, 255);
             myText = ">You sold a brick as an iPhone and earned " + crimeWin;
             ALM.LogText(myText, myColor);
-
             coinStack.Play();
-
         }
+
         else if(moneyCheck == 5)
         { 
             GC.crime = 0;
             GlobalCash.CashCount += crimeWinBig + (GlobalCash.CashCount / 2);
             StatusAndStats.moneyGained += crimeWinBig;
-            //plusCashText.GetComponent<Text>().text = "+ " + crimeWinBig;
-            //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
             animText = "+" + crimeWinBig;
             animColor = new Color32(59, 192, 63, 255);
             fontSize = 47;
@@ -89,7 +78,6 @@ public class proBar : MonoBehaviour
             myText = ">WOW! You robbed a bank and got away with " + crimeWinBig + "!";
             myColor = new Color32(14, 200, 1, 255);
             ALM.LogText(myText, myColor);
-
             coinStack.Play();
         }
         else
@@ -110,9 +98,6 @@ public class proBar : MonoBehaviour
     {
         GC.work = 0;
         GlobalCash.CashCount += 500000; //change for testing (workWin)
-        //plusCashText.GetComponent<Text>().text = "+ " + workWin;
-        //plusCashText.GetComponent<Animation>().Play("plusCashAnim");
-
         animText = "+" + workWin;
         animColor = new Color32(59, 192, 63, 255);
         fontSize = 47;
@@ -121,7 +106,6 @@ public class proBar : MonoBehaviour
         myText = ">You did some honest work and earned " + workWin;
         myColor = new Color32(59, 192, 63, 255);
         ALM.LogText(myText, myColor);
-
         kaChing.Play();
         StatusAndStats.moneyGained += workWin;
     }
