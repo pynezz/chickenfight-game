@@ -280,7 +280,7 @@ public class PurchaseLog : MonoBehaviour
                 case 3:
                     armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
                     marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
-                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")"; 
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
                     break;
                 case 4:
                     armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
