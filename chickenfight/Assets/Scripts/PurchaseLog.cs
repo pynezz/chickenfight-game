@@ -14,7 +14,7 @@ public class PurchaseLog : MonoBehaviour
     public GameObject pickCoinBtnAmText;
 
     public GameObject MPUnlockBtn1, MPUnlockBtn2, MPUnlockBtn3, MPUnlockBtn4, MPUnlockBtn5, pickCoinUpgradeBtn;
-    public GameObject MPUnlockBtn1text, MPUnlockBtn2text, MPUnlockBtn3text, MPUnlockBtn4text, MPUnlockBtn5text, pickCoinUpgradeBtnText; 
+    public GameObject MPUnlockBtn1text, MPUnlockBtn2text, MPUnlockBtn3text, MPUnlockBtn4text, MPUnlockBtn5text, pickCoinUpgradeBtnText, armChicWinChText; 
     public GameObject marketUpgrade1LevelText, marketUpgrade2LevelText, marketUpgrade3LevelText;
     public GameObject upgrade10Btn, upgrade15Btn, upgrade20Btn, upgrade25Btn;
 
@@ -27,18 +27,21 @@ public class PurchaseLog : MonoBehaviour
     public int workWin;
     public static int betterJob = 25000;
     public static bool jobUpgrade = false;
-    private static bool jobBonus;
+    private static bool jobBonus, armChicBool;
     private static bool pickCoinUpgrade = false;
     private static int randomWorkBonus;
-    private static int pickCoinUpgradePrice = 550;
-    private static int randomRange;
-    private int jobLevel = 0;
+    private static float pickCoinUpgradePrice = 250;
+    private static double winChNum = 51;
+    private static int armChicUpgradePrice = 2500, armChicUpgradeInc = 5000;
+    private static int randomRange, lvlNum;
+    private static int jobLevel = 0;
+    private static int armChicUpgrdTxtChng = 0;
 
     public static string animText; //denne delen er for å stacke animasjonene
     public static Color animColor; // -''-
     public static Animation plusLossAnim; // -''-
     public static int fontSize;
-    //public GameObject plusLossText; //dette er teksten som spiller animasjonen, objektet må ha animasjonen koblet til seg og autoplay på
+    //public GameObject plusLossText; //dette er teksten som spiller animasjonen, objektet må ha animasjonen koblet til seg og autoplay på - nvm
 
     private void Update()
     {
@@ -78,16 +81,34 @@ public class PurchaseLog : MonoBehaviour
         {
             MPUnlockBtn1.GetComponent<Image>().color = new Color32(176, 64, 59, 255);
         }
+
+        if(GlobalCash.CashCount >= armChicUpgradePrice)
+        {
+            MPUnlockBtn2.GetComponent<Image>().color = new Color32(59, 176, 75, 255);
+        }
+        else if(GlobalCash.CashCount < armChicUpgradePrice)
+        {
+            MPUnlockBtn2.GetComponent<Image>().color = new Color32(176, 64, 59, 255);
+        }
+
+
         if (jobBonus)
         {
             MPUnlockBtn1text.GetComponent<Text>().text = "BETTER JOB\n" + "(-" + betterJob + ")";
             jobBonus = false;
         }
+
         if(pickCoinUpgrade)
         {
             pickCoinUpgradeBtnText.GetComponent<Text>().text = "PICK COINS BETTER\n" + "(-" + pickCoinUpgradePrice + ")";
             pickCoinBtnAmText.GetComponent<Text>().text = "(+" + pickCoin.coinPickRate + ")";
             pickCoinUpgrade = false;
+        }
+
+        if(armChicBool)
+        {
+            armChicUpgradeInc += 200 + (armChicUpgradeInc - 500);
+            armChicBool = false;
         }
     }
 
@@ -213,8 +234,6 @@ public class PurchaseLog : MonoBehaviour
         if(GlobalCash.CashCount >= pickCoinUpgradePrice)
         {
             GlobalCash.CashCount -= pickCoinUpgradePrice;
-            pickCoinUpgrade = true;
-            pickCoinUpgradePrice += Mathf.RoundToInt(pickCoinUpgradePrice * 0.5f);
             pickCoin.coinPickRate++;
 
             myColor = new Color32(59, 192, 63, 255);
@@ -227,7 +246,131 @@ public class PurchaseLog : MonoBehaviour
 
             lossCashText.GetComponent<Text>().text = "-" + pickCoinUpgradePrice;
             lossCashText.GetComponent<Animation>().Play("lossCashAnim");
+            pickCoinUpgradePrice += 150; //Mathf.Ceil(pickCoinUpgradePrice * 0.5f);
+            pickCoinUpgrade = true;
             upgradeSound.Play();
         }           
+    }
+
+    public void armChicUpgrade()
+    {
+        if(GlobalCash.CashCount >= armChicUpgradePrice)
+        {
+            GlobalCash.CashCount -= armChicUpgradePrice;
+            armChicBool = true;
+            armChicUpgradePrice += armChicUpgradeInc;
+            ChickenFight.noArmUpgrade = false;
+            ChickenFight.armChicUpgrade++;
+            armChicUpgrdTxtChng++;
+            lvlNum++;
+            winChNum += 0.2;
+
+            switch(armChicUpgrdTxtChng)
+            {
+                case 1:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 2:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 3:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 4:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 5:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 6:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 7:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 8:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 9:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 10:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 11:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 12:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 13:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 14:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 15:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 16:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 17:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 18:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 19:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                case 20:
+                    armChicWinChText.GetComponent<Text>().text = "Win chance = " + winChNum + "%";
+                    marketUpgrade2LevelText.GetComponent<Text>().text = "LEVEL " + lvlNum;
+                    MPUnlockBtn2text.GetComponent<Text>().text = "STRONGER CHICKEN ARMOR\n" + "(-" + armChicUpgradePrice + ")";
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 }

@@ -11,7 +11,6 @@ public class AutoMoney : MonoBehaviour
     public float CashCount;
     public GlobalChickens GChick;
     public StatusAndStats StASt;
-    private float time = 10f;
 
     void Update()
     {

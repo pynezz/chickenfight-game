@@ -13,9 +13,9 @@ public class StatusAndStats : MonoBehaviour
     public static float moneyGained;
     public static int marketPlaceUnlock;
 
-    public string currentStatus;
+    private string currentStatus;
     public GameObject MPUnlockBtn1, MPUnlockBtn2, MPUnlockBtn3, MPUnlockBtn4, MPUnlockBtn5;
-    public GameObject MPUnlockBtn1text, MPUnlockBtn2text, MPUnlockBtn3text, MPUnlockBtn4text, MPUnlockBtn5text;
+    public GameObject MPUnlockBtn1text, MPUnlockBtn1LvlTxt, MPUnlockBtn2text, MPUnlockBtn2LvlTxt, MPUnlockBtn3text, MPUnlockBtn3LvlTxt, MPUnlockBtn4text, MPUnlockBtn5text;
     public GameObject MPUnlockBtn1Disabled, MPUnlockBtn2Disabled, MPUnlockBtn3Disabled, MPUnlockBtn4Disabled, MPUnlockBtn5Disabled;
     public GameObject statsWindow;
     public GameObject levelText;
@@ -39,6 +39,7 @@ public class StatusAndStats : MonoBehaviour
         {
             currentStatus = "Chicken Nugget";
             StatusBackground.GetComponent<Image>().color = new Color32(152, 55, 56, 255);
+            levelText.GetComponent<Text>().text = ("Level 1");
         }
 
         if((fightsWon > 25 && fightsWon <= 75) && moneyGained >= 10000)
@@ -84,10 +85,11 @@ public class StatusAndStats : MonoBehaviour
         {
             case 1:
                 MPUnlockBtn1Disabled.SetActive(false);
+                MPUnlockBtn1LvlTxt.SetActive(true);
                 break;
             case 2:
                 MPUnlockBtn2Disabled.SetActive(false);
-                MPUnlockBtn2text.GetComponent<Text>().text = "Coming soon";
+                MPUnlockBtn2LvlTxt.SetActive(true);
                 break;
             case 3:
                 MPUnlockBtn3Disabled.SetActive(false);

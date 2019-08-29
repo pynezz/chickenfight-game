@@ -68,7 +68,7 @@ public class proBar : MonoBehaviour
         else if(moneyCheck == 5)
         { 
             GC.crime = 0;
-            GlobalCash.CashCount += crimeWinBig + (GlobalCash.CashCount / 2);
+            GlobalCash.CashCount += crimeWinBig + Mathf.Ceil(GlobalCash.CashCount / 2);
             StatusAndStats.moneyGained += crimeWinBig;
             animText = "+" + crimeWinBig;
             animColor = new Color32(59, 192, 63, 255);
@@ -97,7 +97,7 @@ public class proBar : MonoBehaviour
     public void doWork()
     {
         GC.work = 0;
-        GlobalCash.CashCount += 500000; //change for testing (workWin)
+        GlobalCash.CashCount += workWin; //change for testing (workWin)
         animText = "+" + workWin;
         animColor = new Color32(59, 192, 63, 255);
         fontSize = 47;

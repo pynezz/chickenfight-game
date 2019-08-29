@@ -17,7 +17,7 @@ public class ActionLogManager : MonoBehaviour
     }
     public void cashAnimation(string lossWinCashString, Color cashAnimColor, int fontSize)//, Animation lossPlusAnimation)
     {
-        if(textAnims.Count == 10) //mengden objekter som skal genereres, når det er 10 objekter vil if statementen kjøre
+        if(textAnims.Count == 30) //mengden objekter som skal genereres, når det er 10 objekter vil if statementen kjøre
         {
             GameObject tempAnim = textAnims[0]; //her genereres et objekt som heter tempAnim som index 0 i listen textAnims
             Destroy(tempAnim.gameObject); //her slettes objektet 
@@ -32,7 +32,7 @@ public class ActionLogManager : MonoBehaviour
     }
     public void LogText(string newTextString, Color newColor)
     {
-        if(textItems.Count == 10)
+        if(textItems.Count == 30)
         {
             GameObject tempItem = textItems[0];
             Destroy(tempItem.gameObject);

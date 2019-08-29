@@ -15,6 +15,7 @@ public class pickCoin : MonoBehaviour
     public static Color myColor;
     public static int coinPickRate = 1;
     public static string animText;
+
     public static Color animColor;
     public static Animation plusLossAnim;
     public GameObject plusLossText;
@@ -23,6 +24,7 @@ public class pickCoin : MonoBehaviour
     {
         GlobalCash.CashCount += coinPickRate;
         StatusAndStats.moneyGained += coinPickRate;
+
         myText = ">You found some cash!";
         myColor = new Color32(233, 233, 233, 255);
         ALM.LogText(myText, myColor);
